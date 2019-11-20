@@ -1,5 +1,6 @@
 <?php
 
+inclue_once("myparam.inc.php");
 session_start()
 
 if (isset($_POST["Connexion"]))
@@ -19,7 +20,7 @@ if (isset($_POST["Connexion"]))
 			$pseudo = htmlentities($_POST["pseudo"], ENT_QUOTES, "UTF-8");
 			$mot_de_passe = htmlentities($_POST["mdp"], ENT_QUOTES, "UTF-8");
 			$base = mysqli_connect (MYHOST, MYUSER, MYPASS,DBNAME); 					   
-	  		$Requete = mysqli_query($mysqli,"SELECT * FROM personne WHERE pseudo = '".$Pseudo."' AND mdp = '".$MotDePasse."'");
+	  		$Requete = mysqli_query($mysqli,"SELECT * FROM personne WHERE pseudo = '".$pseudo."' AND mdp = '".$mot_de_passe."'");
 	  		$result=mysqli_query ($base,$sql);
 	  		
 	  		if(!$result)
