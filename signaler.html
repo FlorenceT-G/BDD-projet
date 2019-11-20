@@ -1,0 +1,127 @@
+<!--revoir lignes : 13 comment récupérer le pseudo ????-->
+
+<?php
+	include_once("myparam.inc.php");
+
+	if ( !empty($_POST)) {
+		// keep track validation errors
+		$nameError = null;
+		$localisationError = null;
+		$dateError = null;
+		
+		// keep track post values
+		// $pseudo = $_POST['pseudo'];
+		$nom = $_POST['nom'];
+		$date = $_POST['date'];		
+		$localisation = $_POST['localisation'];
+
+		
+		// validate input
+		$valid = true;
+		if (empty($nom)) {
+			$nameError = 'S'il vous plaît, saisissez le nom de l'espèce à signaler';
+			$valid = false;
+		}
+		
+		if (empty($localisation)) {
+			$emailError = 'S'il vous plaît, saisissez la localisation de votre signalement';
+			$valid = false;
+		} 
+		
+		if (empty($date)) {
+			$mobileError = 'S'il vous plaît, saisissez la date à laquelle vous avez observé l'espèce nuisible';
+			$valid = false;
+		}
+		
+		// insert data
+		if ($valid) {
+			$base = mysqli_connect (MYHOST, MYUSER, MYPASS, DBNAME); 					   
+			$sql = 	"INSERT INTO `recensement`(`pseudo`, `nomverna`, `_date`, `lieu`) VALUES ('$pseudo', '$nom','$date', '$localisation')";
+			$result=mysqli_query ($base,$sql);
+			if(!$result){
+ 							 echo("Error description: " . mysqli_error($base));
+			}
+			mysqli_close($base);
+
+			//header("Location: index.php");
+		}
+	}
+?>
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Signaler</title>
+    <meta charset="utf-8">
+    <link href="accueil.css"  rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+    
+    			<div>
+    				<div>
+		    			<h3>Faire un signalement d'espèce nuisible</h3>
+		    		</div>
+
+<!-- formulaire, utilise le php du nom "signaler.html (ce fichier)"-->
+	    			<form class="formulaire" action="signaler.html" method="post">
+
+					  <div class="control-group <?php echo !empty($nameError)?'error':'';?>">
+
+					    <label class="control-label">Nom de l'espèce nuisible</label>
+
+					    <div>
+
+					      	<input  class="saisietxt" name="espece" type="text"  placeholder="Saisir le nom de l'espèce" value="<?php echo !empty($espece)?$espece:'';?>">
+
+					      	<?php if (!empty($nameError)): ?>
+
+					      		<span class="help-inline"><?php echo $nameError;?></span>
+
+					      	<?php endif; ?>
+
+					    </div>
+					  </div>
+
+					  <div class="control-group <?php echo !empty($localisationError)?'error':'';?>">
+
+					    <label class="control-label">Localisation</label>
+
+					    <div>
+					    	
+					      	<input  class="saisietxt" name="localisation" type="text" placeholder="Saisir une localisation" value="<?php echo !empty($localisation)?$localisation:'';?>">
+
+					      	<?php if (!empty($localisationError)): ?>
+
+					      		<span class="help-inline"><?php echo $localisationError;?></span>
+
+					      	<?php endif;?>
+
+					    </div>
+					  </div>
+					  <div class="control-group <?php echo !empty($dateError)?'error':'';?>">
+					    <label class="control-label">Date</label>
+					    <div>
+					      	<input  class="saisietxt" name="Date" type="text"  placeholder="Saisir une date" value="<?php echo !empty($date)?$date:'';?>">
+					      	<?php if (!empty($dateError)): ?>
+					      		<span class="help-inline"><?php echo $dateError;?></span>
+					      	<?php endif;?>
+					    </div>
+					  </div>
+					  <div class="form-actions">
+
+<!--Bouton "soumettre" -->
+
+						  <button type="submit" class="button_co">Soumettre le signalement</button>
+						
+						</div>
+					</form>
+				</div>
+				
+    </div> <!-- /container -->
+  </body>
+</html>
