@@ -171,3 +171,11 @@ footer a:hover {
 	display: block;
 	margin: 0 auto;
 }
+
+/* =============================================== */
+/* ----------- Page Inscriptions ----------- */
+
+.date_birth
+{
+	margin-left: 30px;
+}
