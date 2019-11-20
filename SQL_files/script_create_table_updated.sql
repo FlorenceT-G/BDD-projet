@@ -59,3 +59,6 @@ MODIFY mortel TINYINT(1),
 MODIFY douleur TINYINT(1),
 MODIFY atteinte_neuro TINYINT(1),
 MODIFY atteinte_phy TINYINT(1)
+
+ALTER TABLE personne
+ADD mot_de_passe VARCHAR(50)
