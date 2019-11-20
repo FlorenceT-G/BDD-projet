@@ -120,3 +120,49 @@ footer  a {
 	line-height: 1.8em;
 }
 
+/* =============================================== */
+/* ----------- Page Connexion ----------- */
+
+.connexion 
+{
+	text-align: center;
+}
+.formulaire 
+{
+	margin-right: auto;
+	margin-left: auto;
+	width: 500px; 
+	padding: 1em; 
+	border: 1px solid black; 
+	border-radius: 1em;
+}
+
+.div_co 
+{
+	margin-top: 1em;
+}
+
+.label_co
+{
+	text-align: right;
+}
+
+.pseudo
+{
+	display: inline-block;
+	margin-left: 66px;
+}
+.mdp
+{
+	display: inline-block;
+	margin-left: 25px;
+}
+
+.button_co
+{
+	align-content: center;
+	width: 319px;
+	height: 30px;
+	display: block;
+	margin: 0 auto;
+}
