@@ -1,10 +1,11 @@
 <?php
-	//include_once("myparam.inc.php");
 	
+	include_once("myparam.inc.php");
 	if ( !empty($_POST)) 
 	{
 		//keep track validation errors
 		$pseudoErreur = null;
+		$mdpErreur = null;
 		$prenomErreur = null;
 		$nomErreur = null;
 		$emailErreur = null;
@@ -12,6 +13,7 @@
 	
 		// keep track post values
 		$pseudo = $_POST['pseudo'];
+		$mdp = $_POST['mdp'];
 		$nom = $_POST['nom'];
 		$prenom = $_POST['prenom'];
 		$email = $_POST['email'];
@@ -23,6 +25,12 @@
 		if (empty($pseudo)) 
 		{
 			$pseudoErreur = 'Veuillez entrer un pseudo';
+			$valid = false;
+		}
+		
+		if (empty($mdp))
+		{
+			$mdpErreur = 'Veuillez entrer un mot de passe.';
 			$valid = false;
 		}
 
@@ -55,17 +63,20 @@
 			$valid = false;
 		}
 		
-		// insert data
-		/*if ($valid) {
-			$base = mysqli_connect (MYHOST, MYUSER, MYPASS,DBNAME); 					   
-			$sql = 	"INSERT INTO `personne`(pseudo, mail, naissance, inscription, nom, prenom, residence) VALUES ('$pseudo', 	'$mail', '$naissance', '$nom', '$prenom','$residence')";	
-			$result=mysqli_query ($base,$sql);	
-			if(!$result){	
-				 echo("Er	ror description: " . mysqli_error($base));	
+		//insert data
+		if ($valid) {
+			$base = mysqli_connect(MYHOST, MYUSER, MYPASS, DBNAME); 					   
+			$sql = 	"INSERT INTO `personne`(pseudo, mail, naissance, inscription, nom, prenom, residence, mot_de_passe) VALUES ('$pseudo', '$mail', '$naissance', '$nom', '$prenom','$residence', '$mdp')";	
+			$result=mysqli_query($base,$sql);	
+			
+			if(!$result)
+			{	
+				 echo("Error description : ".mysqli_error($base));	
 			}	
-			m	ysqli_close($base);	
+			
+			mysqli_close($base);	
 			//header("Location: index.php");	
-		}*/
+		}
 	} 
 ?>
 
@@ -88,6 +99,15 @@
 					endif; 
 				?>
 			</div>
+			
+			<div <?php echo !empty($pseudoErreur)?'erreur':'';?>>
+				<label for="pseudo">Mot de Passe :</label>
+				<input type="password" name="pseudo" value="<?php echo !empty($pseudo)?$pseudo:'';?>">
+				<?php if (!empty($pseudoErreur)):
+				    echo $pseudoErreur;
+					endif; 
+				?>
+			</div>
 
 			<div <?php echo !empty($nomErreur)?'erreur':'';?>>
 				<label for="nom">Nom :</label>
@@ -98,11 +118,11 @@
 				?>
 			</div>
 
-			<div <?php echo !empty($prenomErreur)?'Erreur' :'';?>>
+			<div <?php echo !empty($mdpErreur)?'Erreur' :'';?>>
 				<label for="prenom">Prénom : </label>
-				<input type="text" name="prenom" value="<?php echo !empty($prenom)?$prenom:'';?>">
-				<?php if (!empty($prenomErreur)):
-					echo $prenomErreur;
+				<input type="text" name="prenom" value="<?php echo !empty($mdp)?$mdp:'';?>">
+				<?php if (!empty($mdpErreur)):
+					echo $mdpErreur;
 					endif; 
 				?>
 			</div>
