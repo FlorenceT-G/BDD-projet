@@ -111,15 +111,25 @@
 					$mdp = md5($mdp); //cryptage du mot de passe
 					$base = mysqli_connect(MYHOST, MYUSER, MYPASS, DBNAME); //requête de connexion à la base de donnée					   
 					$sql = 	"INSERT INTO `personne`(pseudo, mail, naissance, inscription, nom, prenom, residence, mot_de_passe) VALUES ('$pseudo', '$email', '$naissance', '$d_inscription', '$nom', '$prenom','$residence', '$mdp');";	//requêt SQL pour inscrire une personne dans la base de donnée
-					$result  =mysqli_query($base,$sql);	//envoie de la requête de connexion et de la requête d'insertion à MySQL
+					
+					$checkpseudo = "SELECT * FROM personne WHERE pseudo = $checkpseudo;"; //permet de vérifier si le pseudo existe déjà dans la vase de donnée
+
+					if($checkpseudo)
+					{
+						echo "Le pseudo que vous avez choisi est déjà utilisé. Si vous êtes déjà inscrit, rendez-vous sur la page de '<a href="connexion.php">'connexion'</a>'. Sinon, tentez de changer de pseudo.";
+					}
+					else
+					{
+					
+						$result = mysqli_query($base,$sql); //envoie de la requête de connexion et de la requête d'insertion à MySQL
 			
-					if(!$result) //si la requête échoue
-					{	
-				 		echo("Error description : ".mysqli_error($base));	//on echo la raison de l'échec de la requête
-					}	
+						if(!$result) //si la requête échoue
+						{	
+				 			echo("Error description : ".mysqli_error($base)); //on echo la raison de l'échec de la requête
+						}	
 			
-					mysqli_close($base); //si la requête à fonctionné, alors la personne est insérée dans la base de donnée et on peut clore la connexion à MySQL
-					//header("Location: index.php");
+						mysqli_close($base); //si la requête à fonctionné, alors la personne est insérée dans la base de donnée et on peut clore la connexion à MySQL
+					}
 				}
 				else
 				{
@@ -138,10 +148,27 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<!-- <a href=""> -->
+		<link href="accueil.css"  rel="stylesheet">
 		<title>Inscription</title>
 	</head>
 	<body>
+		
+		<header>
+			<a href="Pageaccueil.html" class="retouraccueil">
+				<div class="bandeau">
+					<h1>Nuisibizzbizz</h1> <!--Titre du site-->
+				</div>
+			</a>
+			<div class="MenuHaut">
+				<ul >
+					<a href="Pageaccueil.html"><li class="onglet"> Accueil </li></a>
+					<a href="MenuConnexion"><li class="onglet">	Connexion</li></a>
+					<a href="Menuinscription"><li class="onglet"> Inscription</li></a>
+				</ul>
+			</div>
+				<img class="bandeau" src="fox4.jpg">
+		</header>
+		
 		<h2>Inscription</h2>
 		<form class="inscription" action="inscription.php" method="post">
 
@@ -176,7 +203,7 @@
 				<label for="naissance">Date de naissance (JJ-MM-AAAA) : </label>
 				<label>Jour</label>
 				<span <?php echo !empty($jourErreur)?'Erreur' :'';?>>
-					<input type="text" name="jour" value="<?php echo !empty($jour)?$jour:'';?>">
+					<input type="text" name="jour" maxlength="2" value="<?php echo !empty($jour)?$jour:'';?>">
 					<?php if (!empty($jourErreur)):
 						echo $jourErreur;
 						endif; 
@@ -184,7 +211,7 @@
 				</span>
 				<label>Mois</label>
 				<span <?php echo !empty($moisErreur)?'Erreur' :'';?>>
-					<input type="text" name="mois" value="<?php echo !empty($mois)?$mois:'';?>">
+					<input type="text" name="mois" maxlength="2" value="<?php echo !empty($mois)?$mois:'';?>">
 					<?php if (!empty($moisErreur)):
 						echo $moisErreur;
 						endif; 
@@ -192,7 +219,7 @@
 				</span>
 				<label>Année</label>
 				<span <?php echo !empty($anneeErreur)?'Erreur' :'';?>>
-					<input type="text" name="annee" value="<?php echo !empty($annee)?$annee:'';?>">
+					<input type="text" name="annee" maxlength="4" value="<?php echo !empty($annee)?$annee:'';?>">
 					<?php if (!empty($anneeErreur)):
 						echo $anneeErreur;
 						endif; 
@@ -241,6 +268,24 @@
 			</div>
 	
 		</form>
+		
+		<footer>
+			<p class="disclaimer"> Nous ne sommes pas responsables de la véracité des informations saisies 		par les utilisateurs </p>		
+		
+				<p> Nous contacter par mail: </p>
+				<div>
+					<ul>
+						<li class="contacts">
+							<address><a href="mailto:sarah.bonnet1@etu.univ-nantes.fr"> Sarah </a></address>		
+						</li>		
+						<li class="contacts">		
+							<address><a href="mailto:florence.thomas1@etu.univ-nantes"> Florence </a></address>		
+						</li>		
+					</ul>		
+				</div>		
+			<p class="merci"> Merci de votre visite ! </p> 
+		</footer >
+		
 	</body>
 </html>
 
