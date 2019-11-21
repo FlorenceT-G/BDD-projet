@@ -145,15 +145,6 @@
 		<h2>Inscription</h2>
 		<form class="inscription" action="inscription.php" method="post">
 
-			<div <?php echo !empty($pseudoErreur)?'erreur':'';?>>
-				<label for="pseudo">Pseudo :</label>
-				<input type="text" name="pseudo" value="<?php echo !empty($pseudo)?$pseudo:'';?>">
-				<?php if (!empty($pseudoErreur)):
-				    echo $pseudoErreur;
-					endif; 
-				?>
-			</div>
-
 			<div <?php echo !empty($nomErreur)?'erreur':'';?>>
 				<label for="nom">Nom :</label>
 				<input type="text" name="nom" value="<?php echo !empty($nom)?$nom:'';?>">
@@ -214,6 +205,15 @@
 				<input type="text" name="residence" value="<?php echo !empty($residence)?$residence:'';?>">
 				<?php if (!empty($residenceErreur)):
 					echo $residenceErreur;
+					endif; 
+				?>
+			</div>
+			<br><br>
+			<div <?php echo !empty($pseudoErreur)?'erreur':'';?>>
+				<label for="pseudo">Pseudo :</label>
+				<input type="text" name="pseudo" value="<?php echo !empty($pseudo)?$pseudo:'';?>">
+				<?php if (!empty($pseudoErreur)):
+				    echo $pseudoErreur;
 					endif; 
 				?>
 			</div>
