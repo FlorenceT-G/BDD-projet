@@ -1,6 +1,11 @@
 <?php
 	
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);
+	
 	include_once("myparam.inc.php");
+	
 	if ( !empty($_POST)) 
 	{
 		//keep track validation errors
@@ -9,9 +14,7 @@
 		$nomErreur = null;
 		$emailErreur = null;
 		$residenceErreur = null;
-		$jourErreur = null;
-		$moisErreur = null;
-		$anneeErreur = null;
+		$birth_dateErreur = null;
 		
 		$mdpErreur = null;
 		$repeatmdp = null;
@@ -22,28 +25,23 @@
 		$prenom = $_POST['prenom'];
 		$email = $_POST['email'];
 		$residence = $_POST['residence'];
-		$jour = $_POST['jour'];
-		$mois = $_POST['mois'];
-		$annee = $_POST['annee'];
+		$birth_date = strtotime($_POST['birth_date']);
 		
 		$mdp = $_POST['mdp'];
 		$repeatmdp = $_POST['repeatmdp'];
 		
 		// validate input
 		$valid = true;
-
 		if (empty($pseudo)) 
 		{
 			$pseudoErreur = 'Veuillez entrer un pseudo';
 			$valid = false;
 		}
-
 		if (empty($prenom)) 
 		{
 			$prenomErreur = 'Veuillez entrer un Prénom';
 			$valid = false;
 		}
-
 		if (empty($nom)) 
 		{
 			$nomErreur = 'Veuillez entrer un Nom';
@@ -67,21 +65,9 @@
 			$valid = false;
 		}
 		
-		if (empty($jour)) 
+		if (empty($birth_date)) 
 		{
-			$jourErreur = 'Veuillez entrer un jour';
-			$valid = false;
-		}
-		
-		if (empty($mois)) 
-		{
-			$moisErreur = 'Veuillez entrer un mois';
-			$valid = false;
-		}
-		
-		if (empty($annee)) 
-		{
-			$anneeErreur = 'Veuillez entrer une annee';
+			$birth_dateErreur = 'Veuillez entrer une date de naissance valide';
 			$valid = false;
 		}
 		
@@ -97,11 +83,10 @@
 			$valid = false;
 		}
 		
-		
 		//insert data
 		if ($valid) //si aucun champ ne se trouve vide alors on peut passer au reste
 		{
-			$naissance = "$annee-$mois-$jour"; //transformation de la date entrée par l'utilisateur en un format accepté par MySQL
+			$naissance = date("Y-m-d", $birth_date); //transformation de la date entrée par l'utilisateur en un format accepté par MySQL
 			$d_inscription = date("Y-m-d"); //récupère la date à laquelle l'utilisateur s'inscrit
 			
 			if(strlen($mdp)>=6) //on vérifie que le mot de passe fasse au moins 6 caractères > sécurité
@@ -110,25 +95,28 @@
 				{	
 					$mdp = md5($mdp); //cryptage du mot de passe
 					$base = mysqli_connect(MYHOST, MYUSER, MYPASS, DBNAME); //requête de connexion à la base de donnée					   
-					$sql = 	"INSERT INTO `personne`(pseudo, mail, naissance, inscription, nom, prenom, residence, mot_de_passe) VALUES ('$pseudo', '$email', '$naissance', '$d_inscription', '$nom', '$prenom','$residence', '$mdp');";	//requêt SQL pour inscrire une personne dans la base de donnée
 					
-					$checkpseudo = "SELECT * FROM personne WHERE pseudo = $checkpseudo;"; //permet de vérifier si le pseudo existe déjà dans la vase de donnée
-
-					if($checkpseudo)
+					$check_pseudo = "SELECT pseudo FROM personne WHERE pseudo = '$pseudo'";
+					$check_result =  mysqli_query($base, $checkpseudo); // requête qui permet de vérifier si le pseudo entré n'est pas déjà utilisé
+									
+					$count = mysqli_num_rows($check_result); // si le pseudo n'est pas utilisé retourne 0, sinon 1
+					
+					if ($count == 1) // s'il y a un résultat correspondant au pseudo saisi par l'utilisateur
 					{
-						echo "Le pseudo que vous avez choisi est déjà utilisé. Si vous êtes déjà inscrit, rendez-vous sur la page de '<a href="connexion.php">'connexion'</a>'. Sinon, tentez de changer de pseudo.";
+						echo("ERREUR: Le pseudo que vous avez entré est déjà utilisé."); // alors on affiche un message d'erreur
 					}
-					else
+					else // sinon on peut lancer la requête pour l'ajout du nouvel utilisateur dans la base de donnée
 					{
-					
+						$sql = 	"INSERT INTO `personne`(pseudo, mail, naissance, inscription, nom, prenom, residence, mot_de_passe) VALUES ('$pseudo', '$email', '$naissance', '$d_inscription', '$nom', '$prenom','$residence', '$mdp');";	//requêt SQL pour inscrire une personne dans la base de donnée
 						$result = mysqli_query($base,$sql); //envoie de la requête de connexion et de la requête d'insertion à MySQL
-			
-						if(!$result) //si la requête échoue
+						echo("Vous êtes maintenant enregistré sur Nuisibizzbizz !");
+						header('Location: ./accueil.php');
+						
+						if(!$result) // si la requête échoue
 						{	
-				 			echo("Error description : ".mysqli_error($base)); //on echo la raison de l'échec de la requête
-						}	
-			
-						mysqli_close($base); //si la requête à fonctionné, alors la personne est insérée dans la base de donnée et on peut clore la connexion à MySQL
+			 				echo("Error description : ".mysqli_error($base)); // on echo la raison de l'échec de la requête
+						}				
+						mysqli_close($base); // si la requête à fonctionné, alors la personne est insérée dans la base de donnée et on peut clore la connexion à MySQL
 					}
 				}
 				else
@@ -151,24 +139,25 @@
 		<link href="accueil.css"  rel="stylesheet">
 		<title>Inscription</title>
 	</head>
-	<body>
-		
-		<header>
-			<a href="Pageaccueil.html" class="retouraccueil">
-				<div class="bandeau">
-					<h1>Nuisibizzbizz</h1> <!--Titre du site-->
-				</div>
-			</a>
-			<div class="MenuHaut">
-				<ul >
-					<a href="Pageaccueil.html"><li class="onglet"> Accueil </li></a>
-					<a href="MenuConnexion"><li class="onglet">	Connexion</li></a>
-					<a href="Menuinscription"><li class="onglet"> Inscription</li></a>
-				</ul>
+	
+	<header>
+		<a href="Pageaccueil.html" class="retouraccueil">
+			<div class="bandeau">
+				<h1>Nuisibizzbizz</h1> <!--Titre du site-->
 			</div>
-				<img class="bandeau" src="fox4.jpg">
-		</header>
-		
+		</a>
+		<div class="MenuHaut">
+			<ul >
+				<a href="Pageaccueil.html"><li class="onglet"> Accueil </li></a>
+				<a href="MenuConnexion"><li class="onglet">	Connexion</li></a>
+				<a href="Menuinscription"><li class="onglet"> Inscription</li></a>
+			</ul>
+		</div>
+			<img class="bandeau" src="fox4.jpg">
+	</header>
+	
+	<body>		
+		<div class="corps">		
 		<h2>Inscription</h2>
 		<form class="inscription" action="inscription.php" method="post">
 
@@ -200,28 +189,11 @@
 			</div>
 
 			<div>
-				<label for="naissance">Date de naissance (JJ-MM-AAAA) : </label>
-				<label>Jour</label>
-				<span <?php echo !empty($jourErreur)?'Erreur' :'';?>>
-					<input type="text" name="jour" maxlength="2" value="<?php echo !empty($jour)?$jour:'';?>">
-					<?php if (!empty($jourErreur)):
-						echo $jourErreur;
-						endif; 
-					?>
-				</span>
-				<label>Mois</label>
-				<span <?php echo !empty($moisErreur)?'Erreur' :'';?>>
-					<input type="text" name="mois" maxlength="2" value="<?php echo !empty($mois)?$mois:'';?>">
-					<?php if (!empty($moisErreur)):
-						echo $moisErreur;
-						endif; 
-					?>
-				</span>
-				<label>Année</label>
-				<span <?php echo !empty($anneeErreur)?'Erreur' :'';?>>
-					<input type="text" name="annee" maxlength="4" value="<?php echo !empty($annee)?$annee:'';?>">
-					<?php if (!empty($anneeErreur)):
-						echo $anneeErreur;
+				<label for="naissance">Date de naissance : </label>
+				<span <?php echo !empty($birth_dateErreur)?'Erreur' :'';?>>
+					<input type="date" name="birth_date" maxlength="2" value="<?php echo !empty($birth_date)?$birth_date:'';?>">
+					<?php if (!empty($birth_dateErreur)):
+						echo $birth_dateErreur;
 						endif; 
 					?>
 				</span>
@@ -266,26 +238,24 @@
 			<div>
 				<button type="submit" name="inscription">Inscription</button>
 			</div>
-	
 		</form>
-		
-		<footer>
-			<p class="disclaimer"> Nous ne sommes pas responsables de la véracité des informations saisies 		par les utilisateurs </p>		
-		
-				<p> Nous contacter par mail: </p>
-				<div>
-					<ul>
-						<li class="contacts">
-							<address><a href="mailto:sarah.bonnet1@etu.univ-nantes.fr"> Sarah </a></address>		
-						</li>		
-						<li class="contacts">		
-							<address><a href="mailto:florence.thomas1@etu.univ-nantes"> Florence </a></address>		
-						</li>		
-					</ul>		
-				</div>		
-			<p class="merci"> Merci de votre visite ! </p> 
-		</footer >
-		
+		</div>
 	</body>
+	
+	<footer>
+		<p class="disclaimer"> Nous ne sommes pas responsables de la véracité des informations saisies par les utilisateurs </p>			
+		<p> Nous contacter par mail: </p>
+			<div>
+				<ul>
+				<li class="contacts">
+					<address><a href="mailto:sarah.bonnet1@etu.univ-nantes.fr"> Sarah </a></address>		
+				</li>		
+				<li class="contacts">		
+					<address><a href="mailto:florence.thomas1@etu.univ-nantes"> Florence </a></address>		
+				</li>		
+			</ul>		
+			</div>		
+		<p class="merci"> Merci de votre visite ! </p> 
+	</footer >
+	
 </html>
-
