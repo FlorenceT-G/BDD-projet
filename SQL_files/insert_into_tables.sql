@@ -25,10 +25,45 @@ VALUES
 	'Tique',
 	'Ixodes ricinus',
 	'Insectes',
-	'True',
-	'False',
-	'False',
-	'False'
+	'1',
+	'0',
+	'0',
+	'0'
+);
+INSERT INTO `especes`(nomverna, nomscien, classe, nuisance_ssp, nuisance_ff, nuisance_agri, nuisance_a)
+VALUES
+(
+	'Moustique Tigre',
+	'Aedes aegypti',
+	'Insectes',
+	'1',
+	'0',
+	'0',
+	'0'
+);
+
+INSERT INTO `especes`(nomverna, nomscien, classe, nuisance_ssp, nuisance_ff, nuisance_agri, nuisance_a)
+VALUES
+(
+	'Taon',
+	'Chrysops relictus',
+	'Insectes',
+	'1',
+	'0',
+	'0',
+	'0'
+);
+
+INSERT INTO `especes`(nomverna, nomscien, classe, nuisance_ssp, nuisance_ff, nuisance_agri, nuisance_a)
+VALUES
+(
+	'Blatte Germanique',
+	'Blatella germanica',
+	'Insectes',
+	'1',
+	'0',
+	'0',
+	'0'
 );
 
 INSERT INTO`provoque`(nom_maladie, nomverna)
