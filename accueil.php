@@ -44,7 +44,8 @@
 			<a href="connexion.php"><li class="onglet">Connexion</li></a>
 			<a href="inscription.php"><li class="onglet">Inscription</li></a>
 			<!-- <a href="Pagesupprcompte"><li class="onglet">Supprimer son compte</li></a> -->
-			<a href="logout.php"><li class="onglet">Déconnexion</li></a>		
+			<a href="logout.php"><li class="onglet">Déconnexion</li></a>
+			<a href="edit_profil.php"><li class="onglet"><?php echo"$name"; ?></li></a>
 			
 		</ul>
 	</div>
