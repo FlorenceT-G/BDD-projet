@@ -39,10 +39,13 @@
 	        }
 	        else
 	        {
-	        	session_start();
-	        	$_SESSION['pseudo'] = $pseudo;
-	        	echo("Vous êtes connecté.");
-	        	header('Location: ./accueil.php');
+			if(isset($_POST['pseudo']))
+			{
+			    	session_start();
+	        		$_SESSION['pseudo'] = $pseudo;
+	        		echo("Vous êtes connecté.");
+	        		header('Location: ./accueil.php');
+			}
 			}
 		}
 	}
