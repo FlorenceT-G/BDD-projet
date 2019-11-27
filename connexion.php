@@ -63,28 +63,25 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="UTF-8">
-	<link href="accueil.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<title>Connexion</title>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<link href="accueil.css" rel="stylesheet">
+		<title>Connexion</title>
+	</head>
 
-<header>
-	<a href="Pageaccueil.html" class="retouraccueil">
-		<div class="bandeau">
-			<h1>Nuisibizzbizz</h1> <!--Titre du site-->
-		</div>
-	</a>
-	<div class="MenuHaut">
-		<ul >
-			<a href="Pageaccueil.html"><li class="onglet"> Accueil </li></a>
-			<a href="MenuSignalement"><li class="onglet"> Signaler </li></a>
-			<a href="MenuConsultation"><li class="onglet">
-				Consulter</li></a>
-			<a href="ClassementUtilisateurs"><li class="onglet">Classement utilisateurs</li></a>
-			<a href="MenuMaladies"><li class="onglet">
-				Maladies
+	<header>
+		<a href="accueil.php" class="retouraccueil">
+			<div class="bandeau">
+				<h1>Nuisibizzbizz</h1> <!--Titre du site-->
+			</div>
+		</a>
+		<div class="MenuHaut">
+			<ul>
+				<a href="accueil.php"><li class="onglet"> Accueil </li></a>
+				<a href="MenuSignalement"><li class="onglet"> Signaler </li></a>
+				<a href="MenuConsultation"><li class="onglet">Consulter</li></a>
+				<a href="ClassementUtilisateurs"><li class="onglet">Classement utilisateurs</li></a>
+				<a href="MenuMaladies"><li class="onglet">Maladies
 				<!-- Sous-onglets, facultatifs...
 				<ul>
 					<a href="Maladie1"><li>
@@ -93,17 +90,14 @@
 					<a href="Maladie3"><li>Maladie3</li></a>
 				</ul>
 				-->
-			</li></a>
-					<a href="MenuConnexion"><li class="onglet">
-						Connexion</li></a>
-					<a href="Menuinscription"><li class="onglet">
-						Inscription</li></a>
-					<a href="Pagesupprcompte"><li class="onglet">
-						Supprimer son compte</li></a>
-		</ul>
-	</div>
-	<img class="bandeau" src="fox4.jpg">
-</header>	
+				</li></a>
+				<a href="connexion.php"><li class="onglet">Connexion</li></a>
+				<a href="inscription.php"><li class="onglet">Inscription</li></a>
+				<a href="Pagesupprcompte"><li class="onglet">Supprimer son compte</li></a>
+			</ul>
+		</div>
+		<img class="bandeau" src="fox4.jpg">
+	</header>	
 		
 	<body>
 	<h2>Connexion</h2>	
@@ -120,27 +114,28 @@
 		</div>
 	
 		<div>
-			<button type="sumbit" class="btn btn-outline-secondary">Connexion</button>
-			<button type="button" OnClick="accueil.php" class="btn btn-success">Retour à l'accueil</button>
+			<input type="submit" value="Connexion" />
+			<form action="accueil.php">
+				<input type="submit" value="Retour à l'accueil" />
+			</form>
 		</div>
 				<!-- <button type="button" OnClick="accueil.php">Retour à l'accueil</button> -->
 		</form>
 	</body>
-<footer>
-	<p class="disclaimer"> Nous ne sommes pas responsables de la véracité des informations saisies par les utilisateurs </p>
 
-		<p> Nous contacter par mail: </p>
-		<div>
-			<ul>
-			
-				<li class="contacts">
-					<address>  <a href="mailto:sarah.bonnet1@etu.univ-nantes.fr"> Sarah </a> </address>
-				</li>
-				<li  class="contacts">
-					<address>  <a href="mailto:florence.thomas1@etu.univ-nantes"> Florence </a> </address>
-				</li>
-			</ul>
-		</div>
-	<p class="merci"> Merci de votre visite ! </p> 
-</footer >
+	<footer>
+		<p class="disclaimer"> Nous ne sommes pas responsables de la véracité des informations saisies par les utilisateurs </p>
+			<p> Nous contacter par mail: </p>
+			<div>
+				<ul>
+					<li class="contacts">
+						<address>  <a href="mailto:sarah.bonnet1@etu.univ-nantes.fr"> Sarah </a> </address>
+					</li>
+					<li  class="contacts">
+						<address>  <a href="mailto:florence.thomas1@etu.univ-nantes"> Florence </a> </address>
+					</li>
+				</ul>
+			</div>
+		<p class="merci"> Merci de votre visite ! </p> 
+	</footer>
 </html>
