@@ -41,15 +41,11 @@
 				</ul>
 				-->
 			</li></a>
-					<a href="MenuConnexion"><li class="onglet">
-						Connexion</li></a>
-					<a href="Menuinscription"><li class="onglet">
-						Inscription</li></a>
-					<a href="Pagesupprcompte"><li class="onglet">
-						Supprimer son compte</li></a>
-					<form action="logout.php">
-    					<input type="submit" value="Déconnexion" />
-					</form>
+			<a href="connexion.php"><li class="onglet">Connexion</li></a>
+			<a href="inscription.php"><li class="onglet">Inscription</li></a>
+			<!-- <a href="Pagesupprcompte"><li class="onglet">Supprimer son compte</li></a> -->
+			<a href="logout.php"><li class="onglet">Déconnexion</li></a>		
+			
 		</ul>
 	</div>
 		<img class="bandeau" src="fox4.jpg">
