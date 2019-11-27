@@ -48,6 +48,7 @@ h1 {
 	text-shadow: 0px 0px 1em #e7f295, 0px 0px 0.2em #e7f295, 1px 1px 0.01em white;
 }
 
+
 .MenuHaut ul {
 	margin:0;
 }
@@ -69,6 +70,7 @@ h1 {
 
 }
 
+/* sous menus */
 .onglet ul {
 	display:none;
 	list-style : none;
@@ -76,7 +78,7 @@ h1 {
 }
 
 .onglet:hover ul {
-	display:inline-block;
+	display:block;
 	float:none;
 	background: rgba(82.8,86.7,53.4, 0.5);
 	padding: 0.4em;
@@ -174,4 +176,35 @@ footer a:hover {
 	height: 30px;
 	display: block;
 	margin: 0 auto;
+}
+
+
+h2 {
+    text-align:center;
+}
+
+.control-group {
+    text-align:center;
+}
+
+.form-actions {
+    margin-top:0.5em;
+}
+
+/*tableau classement and cie*/
+
+table.tableau {
+	border-collapse: collapse;
+}
+
+table.tableau th, table.tableau td {
+	border:1px solid #373d0b;
+	padding: 0.1em 1em;
+	text-align:center;
+	color:#373d0b;
+}
+/*rgba(82.8,86.7,53.4, 0.5)*/
+table.tableau th {
+	background: linear-gradient(#93a41e, #667215);
+	text-shadow: 0px 0px 0.2em #d3dd88;
 }
