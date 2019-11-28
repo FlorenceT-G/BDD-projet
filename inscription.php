@@ -271,7 +271,7 @@
 			</tr>
 			
 			<tr>
-			</table
+			</table>
 			<div>
 				<button class= "button_co" type="submit" name="inscription">Inscription</button>
 			</div>
