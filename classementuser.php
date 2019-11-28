@@ -4,6 +4,9 @@
 	ini_set('display_errors', 1);
 	ini_set('display_startup_errors', 1);
 	error_reporting(E_ALL);
+
+	session_start();
+	$pseudo = $_SESSION['pseudo'];
 ?>
 
 <html>
@@ -13,7 +16,9 @@
 	<meta charset="utf-8" >
 </head>
 
-<body>
+	<?php include "header.php"; ?>
+	
+<body class="corps">
 
 <h2>Classement des utilisateurs selon le nombre de signalements</h2>
 <!-- tableau du classement centré-->
@@ -29,7 +34,8 @@
 			$sql = 	"SELECT pseudo, count(*) as nbsignalements FROM recensement GROUP BY pseudo ORDER BY count(*) DESC " ;
 			$result=mysqli_query ($base,$sql);
 
-			while($row = mysqli_fetch_array($result)) {
+			while($row = mysqli_fetch_array($result)) 
+			{
 				$pseudo= $row['pseudo'];
 				$nb= $row['nbsignalements'];
 
@@ -37,9 +43,12 @@
  				echo "<td>$pseudo</td>";
  				echo "<td>$nb</td>";
  				echo "</tr>";
-								}
-		mysqli_close($base);
+			}
+			mysqli_close($base);
 		?>
 </table></center>
 </body>
+	
+	<?php include "footer.php"; ?>
+	
 </html>
