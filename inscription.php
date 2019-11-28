@@ -140,21 +140,7 @@
 		<title>Inscription</title>
 	</head>
 	
-	<header>
-		<a href="Pageaccueil.html" class="retouraccueil">
-			<div class="bandeau">
-				<h1>Nuisibizzbizz</h1> <!--Titre du site-->
-			</div>
-		</a>
-		<div class="MenuHaut">
-			<ul >
-				<a href="Pageaccueil.html"><li class="onglet"> Accueil </li></a>
-				<a href="MenuConnexion"><li class="onglet">	Connexion</li></a>
-				<a href="Menuinscription"><li class="onglet"> Inscription</li></a>
-			</ul>
-		</div>
-			<img class="bandeau" src="fox4.jpg">
-	</header>
+	<?php include "header.php"; ?>
 	
 	<body>		
 		<div class="corps">		
@@ -294,20 +280,6 @@
 		</div>
 	</body>
 	
-	<footer>
-		<p class="disclaimer"> Nous ne sommes pas responsables de la véracité des informations saisies par les utilisateurs </p>			
-		<p> Nous contacter par mail: </p>
-			<div>
-				<ul>
-				<li class="contacts">
-					<address><a href="mailto:sarah.bonnet1@etu.univ-nantes.fr"> Sarah </a></address>		
-				</li>		
-				<li class="contacts">		
-					<address><a href="mailto:florence.thomas1@etu.univ-nantes"> Florence </a></address>		
-				</li>		
-			</ul>		
-			</div>		
-		<p class="merci"> Merci de votre visite ! </p> 
-	</footer >
+	<?php include "header.php"; ?>
 	
 </html>
