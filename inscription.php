@@ -141,16 +141,16 @@
 	</head>
 	
 	<header>
-		<a href="Pageaccueil.html" class="retouraccueil">
+		<a href="accueil.php" class="retouraccueil">
 			<div class="bandeau">
 				<h1>Nuisibizzbizz</h1> <!--Titre du site-->
 			</div>
 		</a>
 		<div class="MenuHaut">
 			<ul >
-				<a href="Pageaccueil.html"><li class="onglet"> Accueil </li></a>
-				<a href="MenuConnexion"><li class="onglet">	Connexion</li></a>
-				<a href="Menuinscription"><li class="onglet"> Inscription</li></a>
+				<a href="accueil.php"><li class="onglet"> Accueil </li></a>
+				<a href="connexion.php"><li class="onglet">	Connexion</li></a>
+				<a href="inscription.php"><li class="onglet"> Inscription</li></a>
 			</ul>
 		</div>
 			<img class="bandeau" src="fox4.jpg">
@@ -159,7 +159,7 @@
 	<body>		
 		<div class="corps">		
 		<h2>Inscription</h2>
-		<form class="inscription" action="inscription.php" method="post">
+		<form class="formulaire" action="inscription.php" method="post">
 
 			<div <?php echo !empty($nomErreur)?'erreur':'';?>>
 				<label for="nom">Nom :</label>
@@ -236,7 +236,7 @@
 			</div>
 
 			<div>
-				<button type="submit" name="inscription">Inscription</button>
+				<button type="submit" name="inscription" class="button_co">Inscription</button>
 			</div>
 		</form>
 		</div>
