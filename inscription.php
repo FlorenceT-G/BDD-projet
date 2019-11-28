@@ -141,16 +141,16 @@
 	</head>
 	
 	<header>
-		<a href="accueil.php" class="retouraccueil">
+		<a href="Pageaccueil.html" class="retouraccueil">
 			<div class="bandeau">
 				<h1>Nuisibizzbizz</h1> <!--Titre du site-->
 			</div>
 		</a>
 		<div class="MenuHaut">
 			<ul >
-				<a href="accueil.php"><li class="onglet"> Accueil </li></a>
-				<a href="connexion.php"><li class="onglet">	Connexion</li></a>
-				<a href="inscription.php"><li class="onglet"> Inscription</li></a>
+				<a href="Pageaccueil.html"><li class="onglet"> Accueil </li></a>
+				<a href="MenuConnexion"><li class="onglet">	Connexion</li></a>
+				<a href="Menuinscription"><li class="onglet"> Inscription</li></a>
 			</ul>
 		</div>
 			<img class="bandeau" src="fox4.jpg">
@@ -160,84 +160,136 @@
 		<div class="corps">		
 		<h2>Inscription</h2>
 		<form class="formulaire" action="inscription.php" method="post">
-
+		
+		<table> <!-- tableau servant à bien placer les éléments, uniquement pour la mise en page : colonne gauche s'aligne sur la droite, donc tous les labels s'affichent juste à gauche de l'espace où renseigner ces informations, et tout est aligné-->
+			<tr>
 			<div <?php echo !empty($nomErreur)?'erreur':'';?>>
+				<td class="colonnelabel">
 				<label for="nom">Nom :</label>
+				</td>
+				<td>
 				<input type="text" name="nom" value="<?php echo !empty($nom)?$nom:'';?>">
 				<?php if (!empty($nomErreur)):
 				    echo $nomErreur;
 					endif; 
 				?>
+				</td>
 			</div>
+			</tr>
 
+			<tr>
 			<div <?php echo !empty($prenomErreur)?'Erreur' :'';?>>
+				<td class="colonnelabel">
 				<label for="prenom">Prénom : </label>
+				</td>
+				<td>
 				<input type="text" name="prenom" value="<?php echo !empty($prenom)?$prenom:'';?>">
 				<?php if (!empty($prenomErreur)):
 					echo $prenomErreur;
 					endif; 
 				?>
+				</td>
 			</div>
+			</tr>
 
+			<tr>
 			<div <?php echo !empty($emailErreur)?'Erreur' :'';?>>
+				<td class="colonnelabel">
 				<label for="mail">Email : </label>
+				</td>
+				<td>
 				<input type="text" name="email" value="<?php echo !empty($email)?$email:'';?>">
 				<?php if (!empty($emailErreur)):
 					echo $emailErreur;
 					endif; 
 				?>
+				</td>
 			</div>
+			</tr>
 
+			<tr>
 			<div>
+				<td class="colonnelabel">
 				<label for="naissance">Date de naissance : </label>
+				</td>
+				<td>
 				<span <?php echo !empty($birth_dateErreur)?'Erreur' :'';?>>
 					<input type="date" name="birth_date" maxlength="2" value="<?php echo !empty($birth_date)?$birth_date:'';?>">
 					<?php if (!empty($birth_dateErreur)):
 						echo $birth_dateErreur;
 						endif; 
 					?>
+				</td>
 				</span>
 			</div>
+			</tr>
 
+			<tr>
 			<div <?php echo !empty($residenceErreur)?'Erreur' :'';?>>
+				<td class="colonnelabel">
 				<label for="residence">Lieu de Résidence : </label>
+				</td>
+				<td>
 				<input type="text" name="residence" value="<?php echo !empty($residence)?$residence:'';?>">
 				<?php if (!empty($residenceErreur)):
 					echo $residenceErreur;
 					endif; 
 				?>
+				</td>
 			</div>
-			<br><br>
+			</tr>
+			<tr> <td><br></td> <td><br></td> </tr> <!--espacement, ligne vide-->
+			<tr>
 			<div <?php echo !empty($pseudoErreur)?'erreur':'';?>>
+				<td class="colonnelabel">
 				<label for="pseudo">Pseudo :</label>
+				</td>
+				<td>
 				<input type="text" name="pseudo" value="<?php echo !empty($pseudo)?$pseudo:'';?>">
 				<?php if (!empty($pseudoErreur)):
 				    echo $pseudoErreur;
 					endif; 
 				?>
+				</td>
 			</div>
+			</tr>
 			
+			<tr>
 			<div <?php echo !empty($mdpErreur)?'erreur':'';?>>
+				<td class="colonnelabel">
 				<label for="mdp">Mot de Passe :</label>
+				</td>
+				<td>
 				<input type="password" name="mdp" value="">
 				<?php if (!empty($mdpErreur)):
 				    echo $mdpErreur;
 					endif; 
 				?>
+				</td>
 			</div>
+			</tr>
 			
+			<tr>
 			<div <?php echo !empty($repeatmdpErreur)?'erreur':'';?>>
+				<td class="colonnelabel">
 				<label for="mdp">Répéter votre Mot de Passe :</label>
+				</td>
+				<td>
 				<input type="password" name="repeatmdp" value="">
 				<?php if (!empty($repeatmdpErreur)):
 				    echo $repeatmdpErreur;
 					endif; 
 				?>
+				</td>
 			</div>
-
+			</tr>
+			
+			<tr>
+			</table
 			<div>
-				<button type="submit" name="inscription" class="button_co">Inscription</button>
+				<button class= "button_co" type="submit" name="inscription">Inscription</button>
 			</div>
+		
 		</form>
 		</div>
 	</body>
