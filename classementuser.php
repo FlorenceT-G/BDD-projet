@@ -15,7 +15,7 @@
 
 <body>
 
-<h2>Classement des utilisateurs selon le nombre de signalement</h2>
+<h2>Classement des utilisateurs selon le nombre de signalements</h2>
 <!-- tableau du classement centré-->
 <center><table class="tableau">
 <!-- titres des colonnes -->
