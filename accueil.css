@@ -178,6 +178,9 @@ footer a:hover {
 	margin: 0 auto;
 }
 
+.colonnelabel {
+	text-align:right;
+}
 
 h2 {
     text-align:center;
