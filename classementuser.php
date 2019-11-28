@@ -18,8 +18,8 @@
 
 	<?php include "header.php"; ?>
 	
-<body class="corps">
-
+<body>
+<div class="corps">
 <h2>Classement des utilisateurs selon le nombre de signalements</h2>
 <!-- tableau du classement centré-->
 <center><table class="tableau">
@@ -47,6 +47,7 @@
 			mysqli_close($base);
 		?>
 </table></center>
+	</div>
 </body>
 	
 	<?php include "footer.php"; ?>
