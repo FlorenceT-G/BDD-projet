@@ -29,8 +29,7 @@
 		<link href="accueil.css"  rel="stylesheet">
 	</head>
 	
-	<header>
-	</header>
+	<?php include "header.php"; ?>
 	
 	<body>
 	<?php echo"$pseudo"; ?>
@@ -73,7 +72,6 @@
 	
 	</body>
 	
-	<footer>
-	</footer>
+	<?php include "footer.php"; ?>
 	
 </html>
