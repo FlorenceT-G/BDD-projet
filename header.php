@@ -1,3 +1,13 @@
+<?php
+	// session_start();
+	if(isset($_POST['pseudo']))
+	{
+		header('Location: accueil.php');
+	}
+	$name = $_SESSION['pseudo'];
+		
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
