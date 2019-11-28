@@ -4,7 +4,7 @@
 	{
 		header('Location: accueil.php');
 	}
-	$name = $_SESSION['pseudo'];
+	$pseudo = $_SESSION['pseudo'];
 		
 ?>
 
@@ -24,7 +24,11 @@
 		<div class="MenuHaut">
 			<ul >
 				<a href="accueil.php"><li class="onglet"> Accueil </li></a>
-				<a href="signaler.php"><li class="onglet"> Signaler </li></a>
+				<?php if($_SESSION['pseudo'])
+					{
+						echo "<a href='signaler.php'><li class='onglet'> Signaler </li></a>";
+					}
+				?>
 				<a href="MenuConsultation"><li class="onglet">
 					Consulter</li></a>
 				<a href="ClassementUtilisateurs"><li class="onglet">Classement utilisateurs</li></a>
@@ -39,11 +43,30 @@
 					</ul>
 					-->
 				</li></a>
-				<a href="connexion.php"><li class="onglet">Connexion</li></a>
+				<?php if(!$_SESSION['pseudo'])
+					{
+						echo "<a href='connexion.php'><li class='onglet'>Connexion</li></a>";
+					}
+				?>
 				<a href="inscription.php"><li class="onglet">Inscription</li></a>
 				<!-- <a href="Pagesupprcompte"><li class="onglet">Supprimer son compte</li></a> -->
-				<a href="logout.php"><li class="onglet">Déconnexion</li></a>
-				<a href="user_profil.php"><li class="onglet"><?php echo"$name"; ?></li></a>
+				<?php if($_SESSION['pseudo'])
+					{
+						echo "<a href='logout.php'><li class='onglet'>Déconnexion</li></a>";
+					}
+				?>
+				
+				<?php if($_SESSION['pseudo'])
+					{
+						echo "<a href='user_profil.php'><li class='onglet'> Gerer son compte </li></a>";
+					}
+				?>
+				<?php if(($_SESSION['pseudo']) && ($pseudo == "Admin"))
+				{
+					echo "<a href='usergestionforadmin.php'><li class='onglet'> Administration </li></a>";
+				}
+				?>
+					
 				
 			</ul>
 		</div>
