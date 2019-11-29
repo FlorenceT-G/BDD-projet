@@ -56,9 +56,6 @@ error_reporting(E_ALL);
 	}
 ?>
 
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,72 +63,68 @@ error_reporting(E_ALL);
     <meta charset="utf-8">
     <link href="accueil.css"  rel="stylesheet">
 </head>
-	
+
 <?php include "header.php"; ?>
 
 <body>
-    <div class="container">
-    	<?php echo "Hello, $pseudo"; ?>
+    <div class="corps">
 		<h2>Faire le signalement d'une espèce nuisible</h2>
 
 <!-- formulaire, utilise le php du nom "signaler.php (ce fichier)"-->
-	    <form class="formulaire" action="signaler.php" method="post">
+		<form class="formulaire" action="signaler.php" method="post">
 			<div class="control-group <?php echo !empty($Error)?'error':'';?>">
+
 			    <label class="control-label">Nom de l'espèce nuisible</label>
-					    <div>
-					    	
-					    		<SELECT name="espece" value="<?php echo !empty($espece)?$espece:'';?>">
-					    			<?php
-					    				$base = mysqli_connect (MYHOST, MYUSER, MYPASS, DBNAME); 
-					    				$sql = 	"SELECT nomverna FROM especes" ;
-					    				$result = mysqli_query($base,$sql);
-										while($row = mysqli_fetch_array($result)) 
-										{
-											$espece= $row['nomverna'];
-									
-											echo "<OPTION value='$espece'> $espece </OPTION> \n"; 
-										}
+				<div>
+			    	<SELECT name="espece" value="<?php echo !empty($espece)?$espece:'';?>">
+				    	<?php
+				    		$base = mysqli_connect (MYHOST, MYUSER, MYPASS, DBNAME); 
+				    		$sql = 	"SELECT nomverna FROM especes" ;
+				    		$result=mysqli_query ($base,$sql);
+							while($row = mysqli_fetch_array($result)) 
+							{
+								$espece= $row['nomverna'];
+								echo "<OPTION value='$espece'> $espece </OPTION> \n"; 
+							}
 								
-										mysqli_close($base);
-									?>
-								</SELECT>	
+							mysqli_close($base);
+						?>
+					</SELECT>	
 
-					      		<?php if (!empty($especeError)): ?>
-
-					      		<span class="help-inline"> <?php echo $especeError;?> </span>
-
-					      		<?php endif; ?>
-
-					    </div>
+				   	<?php if (!empty($especeError)): ?>
+					<span class="help-inline"> <?php echo $especeError;?> </span>
+			      	<?php endif; ?>
+			    </div>
 			</div>
 
 			<div class="control-group <?php echo !empty($localisationError)?'error':'';?>">
-				<label class="control-label">Localisation</label>
-					<div>
-						<input  class="saisietxt" name="localisation" type="text" placeholder="Saisir une localisation" value="<?php echo !empty($localisation)?$localisation:'';?>">
-					    <?php if (!empty($localisationError)): ?>
-							<span class="help-inline"><?php echo $localisationError;?></span>
-						<?php endif;?>
 
-					</div>
-			</div>
-			<div class="control-group <?php echo !empty($dateError)?'error':'';?>">
-				<label class="control-label">Date</label>
-					<div>
-						<input  class="saisietxt" name="date" type="date"  placeholder="Saisir une date" value="<?php echo !empty($date)?$date:'';?>">
-						<?php if (!empty($dateError)): ?>
-							<span class="help-inline"><?php echo $dateError;?></span>
-						<?php endif;?>
-					</div>
+			<label class="control-label">Localisation</label>
+
+			<div>
+			  	<input  class="saisietxt" name="localisation" type="text" placeholder="Saisir une localisation" value="<?php echo !empty($localisation)?$localisation:'';?>">
+			      	<?php if (!empty($localisationError)): ?>
+		      		<span class="help-inline"><?php echo $localisationError;?></span>
+			      	<?php endif;?>
+		    </div>
+		  	<div class="control-group <?php echo !empty($dateError)?'error':'';?>">
+			    <label class="control-label">Date</label>
+			    <div>
+			      	<input  class="saisietxt" name="date" type="date"  placeholder="Saisir une date" value="<?php echo !empty($date)?$date:'';?>">
+			      	<?php if (!empty($dateError)): ?>
+			      		<span class="help-inline"><?php echo $dateError;?></span>
+			      	<?php endif;?>
+			    </div>
 			</div>
 			<div class="form-actions">
-			<!--Bouton "soumettre" -->
+
 				<button type="submit" class="button_co">Soumettre le signalement</button>
+
 			</div>
 		</form>
-	</div> <!-- /container -->
+    </div>
 </body>
-	
-	<?php include "footer.php"; ?>
-	
+
+<?php include "footer.php"; ?>
+
 </html>
