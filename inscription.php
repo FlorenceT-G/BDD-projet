@@ -4,20 +4,16 @@
 	ini_set('display_startup_errors', 1);
 	error_reporting(E_ALL);
 	
+	$_SESSION = null;
 	include_once("myparam.inc.php");
 	
-	if ( !empty($_POST)) 
+	if (!empty($_POST)) 
 	{
-		//keep track validation errors
-		$pseudoErreur = null;
-		$prenomErreur = null;
-		$nomErreur = null;
-		$emailErreur = null;
-		$residenceErreur = null;
-		$birth_dateErreur = null;
-		
 		$mdpErreur = null;
-		$repeatmdp = null;
+		$repeatmdpErr = null;
+		$lenmdpErr = null;
+		$FieldsErr = null;
+		$checkpseudoErr = null;
 	
 		// keep track post values
 		$pseudo = $_POST['pseudo'];
@@ -32,54 +28,30 @@
 		
 		// validate input
 		$valid = true;
-		if (empty($pseudo)) 
+
+		if (empty($pseudo) || empty($prenom) || empty($nom) || empty($email) ||  empty($residence) || empty($birth_date))
 		{
-			$pseudoErreur = 'Veuillez entrer un pseudo';
+			$FieldsErr = "Veuillez remplir tous les champs !";
 			$valid = false;
 		}
-		if (empty($prenom)) 
+		elseif((!filter_var($email,FILTER_VALIDATE_EMAIL)))
 		{
-			$prenomErreur = 'Veuillez entrer un Prénom';
+			$FieldsErr = "Veuillez entrer un Email valide !";
 			$valid = false;
 		}
-		if (empty($nom)) 
+		elseif(empty($mdp) || empty($repeatmdp))
 		{
-			$nomErreur = 'Veuillez entrer un Nom';
+			$mdpErreur = "Veuillez entrer un mot de passe !";
 			$valid = false;
 		}
-		
-		if (empty($email)) 
+		elseif(strlen($mdp) <= 6)
 		{
-			$emailErreur = 'Veuillez entrer un Email';
-			$valid = false;
-		} 
-		else if ( !filter_var($email,FILTER_VALIDATE_EMAIL) ) 
-		{
-			$emailErreur = 'Veuillez entrer une Adress Email valide';
+			$lenmdpErr = "Veuillez entrer un mot de passe de plus de 6 caractères !";
 			$valid = false;
 		}
-		
-		if (empty($residence)) 
+		elseif($mdp != $repeatmdp)
 		{
-			$residenceErreur = 'Veuillez entrer un lieu de Résidence';
-			$valid = false;
-		}
-		
-		if (empty($birth_date)) 
-		{
-			$birth_dateErreur = 'Veuillez entrer une date de naissance valide';
-			$valid = false;
-		}
-		
-		if (empty($mdp))
-		{
-			$mdpErreur = 'Veuillez entrer un mot de passe.';
-			$valid = false;
-		}
-		
-		if (empty($repeatmdp))
-		{
-			$repeatmdpErreur = 'Veuillez répéter votre mot de passe.';
+			$repeatmdpErr ="Les mots de passe de ne sont pas identiques";
 			$valid = false;
 		}
 		
@@ -94,22 +66,19 @@
 				if($mdp == $repeatmdp) //si mot de passe répété est équivalent au mot de passe saisi initialement
 				{	
 					$mdp = md5($mdp); //cryptage du mot de passe
-					$base = mysqli_connect(MYHOST, MYUSER, MYPASS, DBNAME); //requête de connexion à la base de donnée					   
+					$base = mysqli_connect(MYHOST, MYUSER, MYPASS, DBNAME) or die ("Erreur : impossible de se connecter à la base de données !"); //requête de connexion à la base de donnée					   
 					
-					$check_pseudo = "SELECT pseudo FROM personne WHERE pseudo = '$pseudo'";
-					$check_result =  mysqli_query($base, $checkpseudo); // requête qui permet de vérifier si le pseudo entré n'est pas déjà utilisé
-									
-					$count = mysqli_num_rows($check_result); // si le pseudo n'est pas utilisé retourne 0, sinon 1
+					//$check_pseudo = mysqli_num_rows(mysqli_query($base, "SELECT * FROM presonne WHERE pseudo = '".$pseudo."';"));// requête qui permet de vérifier si le pseudo entré n'est pas déjà utilisé
 					
-					if ($count == 1) // s'il y a un résultat correspondant au pseudo saisi par l'utilisateur
+					/*if($check_pseudo != 1)
 					{
-						echo("ERREUR: Le pseudo que vous avez entré est déjà utilisé."); // alors on affiche un message d'erreur
+						$checkpseudoErr = "ERREUR: Le pseudo que vous avez entré est déjà utilisé.";
 					}
 					else // sinon on peut lancer la requête pour l'ajout du nouvel utilisateur dans la base de donnée
-					{
+					{*/
 						$sql = 	"INSERT INTO `personne`(pseudo, mail, naissance, inscription, nom, prenom, residence, mot_de_passe) VALUES ('$pseudo', '$email', '$naissance', '$d_inscription', '$nom', '$prenom','$residence', '$mdp');";	//requêt SQL pour inscrire une personne dans la base de donnée
 						$result = mysqli_query($base,$sql); //envoie de la requête de connexion et de la requête d'insertion à MySQL
-						echo("Vous êtes maintenant enregistré sur Nuisibizzbizz !");
+		
 						header('Location: ./accueil.php');
 						
 						if(!$result) // si la requête échoue
@@ -117,16 +86,16 @@
 			 				echo("Error description : ".mysqli_error($base)); // on echo la raison de l'échec de la requête
 						}				
 						mysqli_close($base); // si la requête à fonctionné, alors la personne est insérée dans la base de donnée et on peut clore la connexion à MySQL
-					}
+					//}
 				}
 				else
 				{
-					echo "Erreur : Les mots de passe ne sont pas identiques."; //echo de l'erreur si les mots de passe ne sont pas identique
+					$repeatmdpErr = "Erreur : Les mots de passe ne sont pas identiques."; //echo de l'erreur si les mots de passe ne sont pas identique
 				}
 			}
 			else
 			{
-				echo "Erreur : Veuillez saisir un mot de passe d'au moins 6 caractères."; //echo de l'erreur lorsque le mdp saisi est inférieur à 6caractères
+				$lenmdpErr = "Erreur : Veuillez saisir un mot de passe d'au moins 6 caractères."; //echo de l'erreur lorsque le mdp saisi est inférieur à 6caractères
 			}
 		}
 	} 
@@ -278,6 +247,25 @@
 		
 		</form>
 		</div>
+		<p style="color:red; text-align:center">
+			<?php 
+				if(!empty($FieldsErr) || !empty($mdpErreur) || !empty($lenmdpErr) || !empty($repeatmdp))
+				{
+					echo $FieldsErr;
+					echo "<br>";
+					echo $mdpErreur;
+					echo "<br>";
+					echo $lenmdpErr;
+					echo "<br>";
+					echo $repeatmdpErr;
+					echo "<br>";
+				}
+				if (!empty($checkpseudoErr))
+				{
+					echo $checkpseudoErr;
+				}
+			?> 
+		</p>
 	</body>
 	
 	<?php include "footer.php"; ?>
