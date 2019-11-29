@@ -62,27 +62,27 @@
 	<?php include "header.php"; ?>
 
 	<body>
+	<div class="corps">
 	<h2>Connexion</h2>	
-	<form action="#" method="post">
+	<form action="#" method="post" class="formulaire">
+	<center>
+		<table>
+		<tr>
+			<td><label for="pseudo">Pseudo :</label></td>
+			<td><input type="text" name="pseudo" placeholder="Nom d'utilisateur..."></td>
+		</tr>
 	
+		<tr>
+			<td><label for="mdp">Mot de Passe :</label></td>
+			<td><input type="password" name="mdp"  placeholder="Mot de passe..."></td>
+		</tr>
+		</table>
 		<div>
-			<label for="pseudo">Pseudo :</label>
-			<input type="text" name="pseudo" placeholder="Nom d'utilisateur...">
+			<input class="button_co" type="submit" value="Connexion" />
 		</div>
-	
-		<div>
-			<label for="mdp">Mot de Passe :</label>
-			<input type="password" name="mdp"  placeholder="Mot de passe...">
-		</div>
-	
-		<div>
-			<input type="submit" value="Connexion" />
-			<form action="accueil.php">
-				<input type="submit" value="Retour à l'accueil" />
-			</form>
-		</div>
-				<!-- <button type="button" OnClick="accueil.php">Retour à l'accueil</button> -->
+		</center>
 		</form>
+	</div>
 	</body>
 
 	<?php include "footer.php"; ?>
