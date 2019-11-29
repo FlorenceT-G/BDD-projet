@@ -27,19 +27,17 @@
 						echo "<a href='signaler.php'><li class='onglet'>Signaler </li></a>";
 					}
 				?>
-				<a href="MenuConsultation"><li class="onglet">Consulter</li></a>
+				<a href="consulter.php">
+					<li class="onglet">Consulter
+						<ul>
+							<a href="consulter_sp.php"><li>Espèces</li></a>
+							<a href="consulter_lieu.php"><li>Lieux</li></a>
+							<a href="consulter_ill.php"><li>Maladies</li></a>
+							<a href="consulter_nuisance.php"><li>Nuisances</li></a>
+							
+						</ul>
+					</li></a>
 				<a href="classementuser.php"><li class="onglet">Classement utilisateurs</li></a>
-				<a href="MenuMaladies"><li class="onglet">
-					Maladies
-					<!-- Sous-onglets, facultatifs...
-					<ul>
-						<a href="Maladie1"><li>
-							Maladie1</li></a>
-						<a href="Maladie2"><li>Maladie2</li></a>
-						<a href="Maladie3"><li>Maladie3</li></a>
-					</ul>
-					-->
-				</li></a>
 				<?php if(!($_SESSION['pseudo']))
 					{
 						echo "<a href='connexion.php'><li class='onglet'>Connexion</li></a>";
