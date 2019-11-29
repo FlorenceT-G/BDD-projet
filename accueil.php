@@ -1,7 +1,6 @@
 <?php
 	session_start();
-	$pseudo = $_SESSION['pseudo'];
-		
+	$pseudo = $_SESSION['pseudo'];	
 ?>
 
 <!DOCTYPE html>
