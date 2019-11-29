@@ -66,6 +66,8 @@ error_reporting(E_ALL);
     <meta charset="utf-8">
     <link href="accueil.css"  rel="stylesheet">
 </head>
+	
+<?php include "header.php"; ?>
 
 <body>
     <div class="container">
@@ -129,4 +131,7 @@ error_reporting(E_ALL);
 		</form>
 	</div> <!-- /container -->
 </body>
+	
+	<?php include "footer.php"; ?>
+	
 </html>
