@@ -99,27 +99,28 @@ error_reporting(E_ALL);
 
 			<div class="control-group <?php echo !empty($localisationError)?'error':'';?>">
 
-			<label class="control-label">Localisation</label>
+				<label class="control-label">Localisation</label>
 
-			<div>
-			  	<input  class="saisietxt" name="localisation" type="text" placeholder="Saisir une localisation" value="<?php echo !empty($localisation)?$localisation:'';?>">
-			      	<?php if (!empty($localisationError)): ?>
-		      		<span class="help-inline"><?php echo $localisationError;?></span>
-			      	<?php endif;?>
-		    </div>
-		  	<div class="control-group <?php echo !empty($dateError)?'error':'';?>">
-			    <label class="control-label">Date</label>
-			    <div>
-			      	<input  class="saisietxt" name="date" type="date"  placeholder="Saisir une date" value="<?php echo !empty($date)?$date:'';?>">
-			      	<?php if (!empty($dateError)): ?>
-			      		<span class="help-inline"><?php echo $dateError;?></span>
-			      	<?php endif;?>
-			    </div>
-			</div>
-			<div class="form-actions">
+				<div>
+				  	<input  class="saisietxt" name="localisation" type="text" placeholder="Saisir une localisation" value="<?php echo !empty($localisation)?$localisation:'';?>">
+				      	<?php if (!empty($localisationError)): ?>
+		    	  		<span class="help-inline"><?php echo $localisationError;?></span>
+				      	<?php endif;?>
+		    	</div>
+		  		<div class="control-group <?php echo !empty($dateError)?'error':'';?>">
+				    <label class="control-label">Date</label>
+				    <div>
+				      	<input  class="saisietxt" name="date" type="date"  placeholder="Saisir une date" value="<?php echo !empty($date)?$date:'';?>">
+				      	<?php if (!empty($dateError)): ?>
+				      		<span class="help-inline"><?php echo $dateError;?></span>
+				      	<?php endif;?>
+				    </div>
+				</div>
+				<div class="form-actions">
 
-				<button type="submit" class="button_co">Soumettre le signalement</button>
+					<button type="submit" class="button_co">Soumettre le signalement</button>
 
+				</div>
 			</div>
 		</form>
     </div>
