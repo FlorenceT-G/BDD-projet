@@ -1,11 +1,9 @@
 <?php
 	// session_start();
-	if(isset($_POST['pseudo']))
+	if($_SESSION)
 	{
-		header('Location: accueil.php');
+		$pseudo = $_SESSION['pseudo'];	
 	}
-	$pseudo = $_SESSION['pseudo'];
-		
 ?>
 
 <!DOCTYPE html>
@@ -26,12 +24,11 @@
 				<a href="accueil.php"><li class="onglet"> Accueil </li></a>
 				<?php if($_SESSION['pseudo'])
 					{
-						echo "<a href='signaler.php'><li class='onglet'> Signaler </li></a>";
+						echo "<a href='signaler.php'><li class='onglet'>Signaler </li></a>";
 					}
 				?>
-				<a href="MenuConsultation"><li class="onglet">
-					Consulter</li></a>
-				<a href="ClassementUtilisateurs"><li class="onglet">Classement utilisateurs</li></a>
+				<a href="MenuConsultation"><li class="onglet">Consulter</li></a>
+				<a href="classementuser.php"><li class="onglet">Classement utilisateurs</li></a>
 				<a href="MenuMaladies"><li class="onglet">
 					Maladies
 					<!-- Sous-onglets, facultatifs...
@@ -43,22 +40,25 @@
 					</ul>
 					-->
 				</li></a>
-				<?php if(!$_SESSION['pseudo'])
+				<?php if(!($_SESSION['pseudo']))
 					{
 						echo "<a href='connexion.php'><li class='onglet'>Connexion</li></a>";
 					}
 				?>
-				<a href="inscription.php"><li class="onglet">Inscription</li></a>
-				<!-- <a href="Pagesupprcompte"><li class="onglet">Supprimer son compte</li></a> -->
-				<?php if($_SESSION['pseudo'])
+				<?php if(!($_SESSION['pseudo']))
 					{
-						echo "<a href='logout.php'><li class='onglet'>Déconnexion</li></a>";
+						echo "<a href='inscription.php'><li class='onglet'>Inscription</li></a>";
 					}
-				?>
-				
+				?>			
 				<?php if($_SESSION['pseudo'])
 					{
-						echo "<a href='user_profil.php'><li class='onglet'> Gerer son compte </li></a>";
+						echo "<a href='user_profil.php'><li class='onglet'>Gerer son compte
+								<ul>
+								<a href='user_profil.php'><li>
+									Modifier son profil</li></a>
+								<a href='logout.php'><li>Déconnexion</li></a>
+								<a href='supprcompte.php'><li>Supprimer sont compte</li></a>
+						</ul></li></a>";
 					}
 				?>
 				<?php if(($_SESSION['pseudo']) && ($pseudo == "Admin"))
