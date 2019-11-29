@@ -6,8 +6,7 @@
 
 <?php
     session_start();
-    include "myparam.inc.php";
-	$pseudo = $_SESSION['pseudo'];	
+    include "myparam.inc.php";	
 ?>
 
 <?php
