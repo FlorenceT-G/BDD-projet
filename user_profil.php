@@ -32,40 +32,40 @@
 	<?php include "header.php"; ?>
 	
 	<body>
-	<?php echo"$pseudo"; ?>
 	<form action="edit_profil.php">
 		<div class="corps">	
-		<h2>Profil utilisateur</h2>
-			<table>
-				<tr>
-					<td>Nom : </td>
-					<td><?php echo $nom; ?></td>
-				</tr>
-				<tr>
-					<td>Prénom : </td>
-					<td> <?php echo $prenom; ?></td>
-				</tr>
-				<tr>
-					<td>E-mail : </td>
-					<td><?php echo $mail; ?></td>
-				</tr>
-				<tr>
-					<td>Pseudo : </td>
-					<td><?php echo $pseudo; ?></td>
-				</tr>
-				<tr>
-					<td>Date de Naissance : </td>
-					<td><?php echo $naissance; ?></td>
-				</tr>
-				<tr>
-					<td>Date d'inscription : </td>
-					<td><?php echo $inscription; ?></td>
-				</tr>
-				<tr>
-					<td><input type="submit" value="Editer le profil"></td>
-				</tr>
-			</table>
-			<?php  ?>
+			<?php echo"Bonjour, $pseudo !"; ?>
+			<h2>Profil utilisateur</h2>
+				<table>
+					<tr>
+						<td>Nom : </td>
+						<td><?php echo $nom; ?></td>
+					</tr>
+					<tr>
+						<td>Prénom : </td>
+						<td> <?php echo $prenom; ?></td>
+					</tr>
+					<tr>
+						<td>E-mail : </td>
+						<td><?php echo $mail; ?></td>
+					</tr>
+					<tr>
+						<td>Pseudo : </td>
+						<td><?php echo $pseudo; ?></td>
+					</tr>
+					<tr>
+						<td>Date de Naissance : </td>
+						<td><?php echo $naissance; ?></td>
+					</tr>
+					<tr>
+						<td>Date d'inscription : </td>
+						<td><?php echo $inscription; ?></td>
+					</tr>
+					<tr>
+						<td><input type="submit" value="Editer le profil"></td>
+					</tr>
+				</table>
+				<?php  ?>
 		</div class="corps">
 	</form>	
 	</table>
