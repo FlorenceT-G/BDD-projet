@@ -1,10 +1,6 @@
 <?php
 	session_start();
-	if(isset($_POST['pseudo']))
-	{
-		header('Location: accueil.php');
-	}
-	$name = $_SESSION['pseudo'];
+	$pseudo = $_SESSION['pseudo'];
 		
 ?>
 
@@ -17,14 +13,18 @@
 </head>
 
 	<?php include "header.php" ?>
-	
+
 <body>
 
-	<?php echo("Bonjour, $name"); ?>
 	<div class="corps">
-	<h2>
-		Bienvenue !
-	</h2>
+	<?php 
+		if ($_SESSION['pseudo'])
+		{
+			echo("Bonjour, $pseudo");
+		}
+	?>
+	
+	<h2>Bienvenue !</h2>
 	<p> Bienvenue cher utilisateur ! </p>
 	<p>
 		Tu es sur un site collaboratif qui permet la collecte de nombreuses informations sur la localisation d'espèces nuisibles :
