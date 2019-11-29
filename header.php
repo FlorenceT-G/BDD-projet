@@ -4,6 +4,10 @@
 	{
 		$pseudo = $_SESSION['pseudo'];	
 	}
+	else
+	{
+		$_SESSION = null;
+	}
 ?>
 
 <!DOCTYPE html>
