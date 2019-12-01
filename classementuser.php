@@ -50,4 +50,8 @@
 
 		<?php include "footer.php"; ?>
 
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 6180199e04e6c19a38a9d9291fb2bc869bcbec24

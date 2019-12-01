@@ -211,3 +211,7 @@ table.tableau th {
 	background: linear-gradient(#93a41e, #667215);
 	text-shadow: 0px 0px 0.2em #d3dd88;
 }
+
+.textimput {
+	width:auto;
+}
