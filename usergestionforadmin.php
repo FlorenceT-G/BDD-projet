@@ -12,6 +12,8 @@
 	<link href="accueil.css"  rel="stylesheet">
 	<meta charset="utf-8">
 </head>
+	
+<?php include "header.php"; ?>
 
 <body><div class="corps">
 
@@ -110,7 +112,8 @@
 
 </table></center>
 </div></body>
-
+	
+<?php include "footer.php"; ?>
 
 </html>
 
