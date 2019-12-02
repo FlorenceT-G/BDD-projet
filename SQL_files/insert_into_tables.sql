@@ -393,4 +393,84 @@ VALUES
 	'1',
 	'1',
 	'1'
-)
+);
+
+INSERT INTO `maladie`(nom_maladie, mortel, douleur, atteinte_neuro, atteinte_phy) 
+VALUES
+(
+	'Encephalite à tique',
+	'0',
+	'0',
+	'1',
+	'0'
+);
+
+INSERT INTO `maladie`(nom_maladie, mortel, douleur, atteinte_neuro, atteinte_phy) 
+VALUES
+(
+	'Leishmaniose',
+	'0',
+	'0',
+	'0',
+	'1'
+);
+
+INSERT INTO `maladie`(nom_maladie, mortel, douleur, atteinte_neuro, atteinte_phy) 
+VALUES
+(
+	'Fièvre Jaune',
+	'1',
+	'1',
+	'0',
+	'1'
+);
+
+INSERT INTO `maladie`(nom_maladie, mortel, douleur, atteinte_neuro, atteinte_phy) 
+VALUES
+(
+	'Dengue',
+	'1',
+	'1',
+	'0',
+	'1'
+);
+
+INSERT INTO `maladie`(nom_maladie, mortel, douleur, atteinte_neuro, atteinte_phy) 
+VALUES
+(
+	'Chikungunya',
+	'1',
+	'1',
+	'1',
+	'1'
+);
+
+INSERT INTO `maladie`(nom_maladie, mortel, douleur, atteinte_neuro, atteinte_phy) 
+VALUES
+(
+	'Douve du Foie',
+	'0',
+	'1',
+	'0',
+	'1'
+);
+
+INSERT INTO `maladie`(nom_maladie, mortel, douleur, atteinte_neuro, atteinte_phy) 
+VALUES
+(
+	'Leptospirose',
+	'1',
+	'1',
+	'1',
+	'1'
+);
+
+INSERT INTO `maladie`(nom_maladie, mortel, douleur, atteinte_neuro, atteinte_phy) 
+VALUES
+(
+	'Rage',
+	'1',
+	'1',
+	'1',
+	'1'
+);
