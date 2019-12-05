@@ -71,7 +71,7 @@ VALUES
 (
 	'Fouine',
 	'Martes foina',
-	'Mammifères',
+	'Mammiferes',
 	'0',
 	'0',
 	'0',
@@ -83,7 +83,7 @@ VALUES
 (
 	'Martre',
 	'Martres martres',
-	'Mammifères',
+	'Mammiferes',
 	'0',
 	'1',
 	'0',
@@ -129,7 +129,7 @@ VALUES
 INSERT INTO `especes`(nomverna, nomscien, classe, nuisance_ssp, nuisance_ff, nuisance_agri, nuisance_a)
 VALUES
 (
-	'Blatte Américaine',
+	'Blatte Americaine',
 	'Periplanata americana',
 	'Insectes',
 	'0',
@@ -141,7 +141,7 @@ VALUES
 INSERT INTO `especes`(nomverna, nomscien, classe, nuisance_ssp, nuisance_ff, nuisance_agri, nuisance_a)
 VALUES
 (
-	'Charançon du Blé',
+	'Charançon du Ble',
 	'Sitophilus granarius',
 	'Insectes',
 	'0',
@@ -177,7 +177,7 @@ VALUES
 INSERT INTO `especes`(nomverna, nomscien, classe, nuisance_ssp, nuisance_ff, nuisance_agri, nuisance_a)
 VALUES
 (
-	'Alucite des Céréales',
+	'Alucite des Cereales',
 	'Sitotroga cereallela',
 	'Insectes',
 	'0',
@@ -225,7 +225,7 @@ VALUES
 INSERT INTO `especes`(nomverna, nomscien, classe, nuisance_ssp, nuisance_ff, nuisance_agri, nuisance_a)
 VALUES
 (
-	'Geai des Chênes',
+	'Geai des Chenes',
 	'Garrulus glandarius',
 	'Oiseaux',
 	'0',
@@ -251,7 +251,7 @@ VALUES
 (
 	'Raton Laveur',
 	'Procyon lotor',
-	'Mammifères',
+	'Mammiferes',
 	'1',
 	'1',
 	'1',
@@ -263,7 +263,7 @@ VALUES
 (
 	'Chien viverrin',
 	'Nyctereutes procyonoides',
-	'Mammifères',
+	'Mammiferes',
 	'0',
 	'1',
 	'1',
@@ -275,7 +275,7 @@ VALUES
 (
 	'Belette',
 	'Mustela nivalis',
-	'Mammifères',
+	'Mammiferes',
 	'0',
 	'1',
 	'0',
@@ -297,7 +297,7 @@ VALUES
 INSERT INTO `especes`(nomverna, nomscien, classe, nuisance_ssp, nuisance_ff, nuisance_agri, nuisance_a)
 VALUES
 (
-	'Rat Musqué',
+	'Rat Musque',
 	'Ondatra zibethicus',
 	'Insectes',
 	'0',
@@ -347,7 +347,7 @@ VALUES
 (
 	'Ragondin',
 	'Myocastor coypus',
-	'Mammifères',
+	'Mammiferes',
 	'1',
 	'1',
 	'0',
@@ -473,4 +473,74 @@ VALUES
 	'1',
 	'1',
 	'1'
+);
+
+INSERT INTO`provoque`(nom_maladie, nomverna)
+VALUES
+(
+	'Maladie de Lyme',
+	'Tique'
+);
+
+INSERT INTO`provoque`(nom_maladie, nomverna)
+VALUES
+(
+	'Maladie de Lyme',
+	'Raton Laveur'
+);
+
+INSERT INTO`provoque`(nom_maladie, nomverna)
+VALUES
+(
+	'Encephalite à tique',
+	'Tique'
+);
+
+INSERT INTO`provoque`(nom_maladie, nomverna)
+VALUES
+(
+	'Leishmaniose',
+	'Taon'
+);
+
+INSERT INTO`provoque`(nom_maladie, nomverna)
+VALUES
+(
+	'Fievre Jaune',
+	'Moustique Tigre'
+);
+
+INSERT INTO`provoque`(nom_maladie, nomverna)
+VALUES
+(
+	'Dengue',
+	'Moustique Tigre'
+);
+
+INSERT INTO`provoque`(nom_maladie, nomverna)
+VALUES
+(
+	'Chikungunya',
+	'Moustique Tigre'
+);
+
+INSERT INTO`provoque`(nom_maladie, nomverna)
+VALUES
+(
+	'Douve du Foie',
+	'Ragondin'
+);
+
+INSERT INTO`provoque`(nom_maladie, nomverna)
+VALUES
+(
+	'Leptospirose',
+	'Ragondin'
+);
+
+INSERT INTO`provoque`(nom_maladie, nomverna)
+VALUES
+(
+	'Rage',
+	'Renard'
 );
